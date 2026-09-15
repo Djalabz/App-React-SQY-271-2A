@@ -7,14 +7,14 @@ import { useState } from "react";
 
 function Counter() {
     // A - Données (states, vatriables) 
-
-
     // Ici count est la valeur du state et setCount la fonction de modification du state 
     const [count, setCount] = useState(0)
+
 
     // B - Opérations (différentes fonctions liées au composant) 
     function increment() {
         setCount(count + 1)
+        console.log(count)
     }
 
     // C - Le rendu, la vue du compossant en JSX (simili HTML mais en fait c'est du JS...)
