@@ -4,8 +4,10 @@
 import { useState } from "react";
 
 // 2 - Fonction de composant fonctionnel 
+
 function Counter() {
     // A - Données (states, vatriables) 
+
 
     // Ici count est la valeur du state et setCount la fonction de modification du state 
     const [count, setCount] = useState(0)
