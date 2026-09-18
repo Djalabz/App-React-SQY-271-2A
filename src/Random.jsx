@@ -41,8 +41,6 @@ function Random() {
 
             }
 
-            
-
             <h2>{randomStudent}</h2>
         </>
     );
