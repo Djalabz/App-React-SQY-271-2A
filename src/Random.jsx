@@ -28,7 +28,6 @@ function Random() {
         setRandomStudent("")
     }
     
-
     return (  
         <>
             <h1>Random Student !!</h1>
@@ -40,7 +39,7 @@ function Random() {
             : <button onClick={() => reset()}>Reset</button> 
 
             }
-
+-
             <h2>{randomStudent}</h2>
         </>
     );
