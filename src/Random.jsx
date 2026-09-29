@@ -10,7 +10,7 @@
 
 import { useState } from "react";
 
-let students = ["Abdallah", "Nohlan", "Soen", "Ethan", "Mathis", "Tony"]
+let students = ["Abdallah", "Nohlan", "Soen", "Ethan", "Mathis", "Tony", "Louis"]
 
 function Random() {
     const [randomStudent, setRandomStudent] = useState("")
