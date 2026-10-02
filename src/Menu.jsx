@@ -19,6 +19,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 // Imports liés au routeur
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
+// Import pour le CSS 
+import "./Menu.css"
+
 function Menu() {
     return ( <>
 
