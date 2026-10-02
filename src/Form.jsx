@@ -8,14 +8,6 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 
-// Ajouter un bouton de type switch / interrupteur 
-// Ce bouton doit permettre de passer d'une vue signup à une vue login (et vice versa)
-// -> Le h1 doit changer, les inputs aussi, il y aura du coup seulement 2 inputs pour le login 
-
-// -> Utiliser un composant MUI pour ce bouton switch 
-// -> Réfléchir au meilleur moyen de rendre ce form dynamique 
-
-
 function Form() {
     const [formData, setFormData] = useState({
         username: "", 
