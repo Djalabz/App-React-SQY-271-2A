@@ -6,8 +6,8 @@
 // Idéalement on veut que lorsque l'on arrive sur la page de todo nos anciennes todos soient visibles 
 // Un indice poour l'affichage initial des todos : useEffect...
 
-import { useState, useEffect } from "react";
-import { v4 as uuidv4 } from 'uuid';
+import { useState, useEffect } from "react"
+import { v4 as uuidv4 } from 'uuid'
 
 function Todo() {
     const [inputValue, setInputValue] = useState("")
