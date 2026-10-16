@@ -24,12 +24,6 @@ import "./Menu.css"
 
 function Menu() {
     return ( <>
-
-
-
-
-
-
         <BrowserRouter>
             {/* Navigation */}
             <AppBar position="static">

@@ -1,12 +1,15 @@
-// Faire un composant qui tire un èlève au sort 
+// Améliorer le random student ... On veut que ça claque !
 
-// Vous aurez besoin de la liste des élèves, d'utiliser le state (pour l'élève choisi par exemple)
+// Inclure au moins une librairie externe -> Pour de l'animation, du style, de la 3D... Feel free !
 
-// Fonctionnement : 
-// - On clique sur un bouton de démarrage (button avec onClick)
-// - La liste des élèves défile et s'arrete sur un èlève au bout de x secondes
+// Il faut qu'on voit la tete des etudiants -> photos Netypareo ok ou autre 
 
-// Tips: Math.random...Math.floor...useState...
+// Idées : faire comme une roue de la fortune par exemple ! Ou encore un effet casino !
+
+// Autre chose : Faire un système de point -> Le prof doit pouvoir appuyer sur un bouton pour valider ou non la réponse donnée.
+// Une réponse validée = +1 sinon pas de points. Le total des points par élève et leur classement doit etre dispo sur la meme page.
+
+// Pourquoi pas meme enregistrer ces données en BDD ? 
 
 import { useState } from "react";
 
