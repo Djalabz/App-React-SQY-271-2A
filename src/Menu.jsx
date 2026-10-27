@@ -7,6 +7,7 @@ import Quiz from "./Quiz.jsx"
 import Api from "./Api.jsx"
 import Form from "./Form.jsx"
 import Todo from "./Todo.jsx"
+import Shop from "./Shop.jsx"
 
 // Imports liés à MUI 
 import AppBar from '@mui/material/AppBar';
@@ -47,6 +48,7 @@ function Menu() {
                     <Button color="inherit"><Link to="/api">Api</Link> </Button>
                     <Button color="inherit"><Link to="/form">Form</Link> </Button>
                     <Button color="inherit"><Link to="/todo">Todo</Link> </Button>
+                    <Button color="inherit"><Link to="/shop">Shop</Link> </Button>
                 </nav>
             </Toolbar>
             </AppBar>
@@ -61,6 +63,7 @@ function Menu() {
                 <Route path="/form" element={<Form />} />
                 <Route path="/api" element={<Api />} />
                 <Route path="/todo" element={<Todo />} />
+                <Route path="/shop" element={<Shop />} />
             </Routes>
         </BrowserRouter>
     </> );
