@@ -16,13 +16,14 @@ import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import cart from "./assets/cart.svg"
+import cartLogo from "./assets/cart.svg"
 
 // Imports liés au contexte
-import { ShopContextProvider } from "./context/ShopContext.jsx"
+import { ShopContext, ShopContextProvider } from "./context/ShopContext.jsx"
 
 // Imports liés au routeur
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { useContext, useState, useEffect } from "react"
 
 // Import pour le CSS 
 import "./Menu.css"
@@ -39,6 +40,10 @@ import "./Menu.css"
 
 
 function Menu() {
+    const { cart } = useContext(ShopContext)
+
+    console.log(cart)
+
     return ( <>
         <BrowserRouter>
             {/* Navigation */}
@@ -64,8 +69,10 @@ function Menu() {
                             <Button color="inherit"><Link to="/todo">Todo</Link> </Button>
                             <Button color="inherit"><Link to="/shop">Shop</Link> </Button>
                         </nav>
-                        <img src={cart} width={50} height={50} />
+                        
+                        <img src={cartLogo} width={50} height={50} />
 
+                        {cart && <p>{cart.length}</p>}
 
                 </Toolbar>
                 
@@ -82,7 +89,7 @@ function Menu() {
                 <Route path="/form" element={<Form />} />
                 <Route path="/api" element={<Api />} />
                 <Route path="/todo" element={<Todo />} />
-                <Route path="/shop" element={<ShopContextProvider><Shop /></ShopContextProvider>} />
+                <Route path="/shop" element={<Shop />} />
             </Routes>
         </BrowserRouter>
     </> );
