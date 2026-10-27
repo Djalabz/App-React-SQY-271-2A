@@ -23,34 +23,44 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 // Import pour le CSS 
 import "./Menu.css"
 
+
+// Afficher le svg du caddie dans la NavBar 
+
+// Créer un fichier de contexte -> ShopContext qui sera dans le dossier context 
+// Dans ce fichier vous viendrez importer les éléments nécessaires (createContext, useContext)
+
+// 1 - Vous allez créer le contexte 
+// 2 - Vous allez créer le contexteProvider
+
+
+
 function Menu() {
     return ( <>
         <BrowserRouter>
             {/* Navigation */}
             <AppBar position="static">
-
-            <Toolbar>
-            <IconButton
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-                sx={{ mr: 2 }}
-            >
-            <MenuIcon />
-            </IconButton>
-                <nav>
-                    <Button color="inherit"><Link to="/">Home</Link> </Button>
-                    <Button color="inherit"><Link to="/quiz">Quiz</Link></Button>
-                    <Button color="inherit"><Link to="/random">Random</Link> </Button>
-                    <Button color="inherit"><Link to="/articles">Articles</Link> </Button>
-                    <Button color="inherit"><Link to="/counter">Counter</Link> </Button>
-                    <Button color="inherit"><Link to="/api">Api</Link> </Button>
-                    <Button color="inherit"><Link to="/form">Form</Link> </Button>
-                    <Button color="inherit"><Link to="/todo">Todo</Link> </Button>
-                    <Button color="inherit"><Link to="/shop">Shop</Link> </Button>
-                </nav>
-            </Toolbar>
+                <Toolbar>
+                <IconButton
+                    size="large"
+                    edge="start"
+                    color="inherit"
+                    aria-label="menu"
+                    sx={{ mr: 2 }}
+                >
+                <MenuIcon />
+                </IconButton>
+                    <nav>
+                        <Button color="inherit"><Link to="/">Home</Link> </Button>
+                        <Button color="inherit"><Link to="/quiz">Quiz</Link></Button>
+                        <Button color="inherit"><Link to="/random">Random</Link> </Button>
+                        <Button color="inherit"><Link to="/articles">Articles</Link> </Button>
+                        <Button color="inherit"><Link to="/counter">Counter</Link> </Button>
+                        <Button color="inherit"><Link to="/api">Api</Link> </Button>
+                        <Button color="inherit"><Link to="/form">Form</Link> </Button>
+                        <Button color="inherit"><Link to="/todo">Todo</Link> </Button>
+                        <Button color="inherit"><Link to="/shop">Shop</Link> </Button>
+                    </nav>
+                </Toolbar>
             </AppBar>
 
             {/* Routes */}

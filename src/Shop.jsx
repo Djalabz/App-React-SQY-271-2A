@@ -13,7 +13,7 @@ import "./Shop.css"
 
 function Shop() {
     const [products, setProducts] = useState(null) 
-    const [cart, setCart] = useState([]) || JSON.parse(window.localStorage.getItem("cart"))
+    const [cart, setCart] = useState(window.localStorage.getItem("cart") ? JSON.parse(window.localStorage.getItem("cart")) : [])
 
     // On vient fetch les produits depuis la Fake Store API lors du render initial
     useEffect(() => {
@@ -28,24 +28,20 @@ function Shop() {
 
     // On vient enregistrer le cart en LS dès que le state cart change de valeur
     useEffect(() => {
-
         window.localStorage.setItem("cart", JSON.stringify(cart))
-
     }, [cart]) 
 
     // Trouver un moyen de modifier seulement la quantité d'un produit quand 
     // celui-ci est déjà dans le cart 
 
     function addToCart(product) {
-
         // On vient vérifier si le produit est déjà ou pas dans notre cart 
         if (cart.find((item) => item.id == product.id)) {
 
             // On crée une variable qui va contenir l'item modifié au niveau de sa quantité
             let newCart = cart.map((item) => {
-                (item.id == product.id) ? { ... item, qty: item.qty + 1 } : item
+                return (item.id == product.id) ? { ... item, qty: item.qty + 1 } : item
             })
-
             setCart(newCart)
 
         } else {
@@ -54,6 +50,13 @@ function Shop() {
             let newCart = [ ...cart, newObj]
             setCart(newCart)
         }
+    }
+
+    // On vient vérifier la qty, -1 ou on supprime le produit selon
+    function deleteFromCart() {
+
+        // Imlpémenter cette fonctionnalité 
+
     }
 
 
