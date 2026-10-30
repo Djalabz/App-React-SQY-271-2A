@@ -9,6 +9,8 @@ import Form from "./Form.jsx"
 import Todo from "./Todo.jsx"
 import Shop from "./Shop.jsx"
 import Product from "./Product.jsx"
+import Cart from "./Cart.jsx"
+import NoPage from "./NoPage.jsx"
 
 // Imports liés à MUI 
 import AppBar from '@mui/material/AppBar';
@@ -30,20 +32,8 @@ import { useContext, useState, useEffect } from "react"
 import "./Menu.css"
 
 
-// Afficher le svg du caddie dans la NavBar 
-
-// Créer un fichier de contexte -> ShopContext qui sera dans le dossier context 
-// Dans ce fichier vous viendrez importer les éléments nécessaires (createContext, useContext)
-
-// 1 - Vous allez créer le contexte avec createContexte - sans valeur initiale 
-// 2 - Vous allez créer le contexteProvider - Sous forme de fonction 
-
-
-
 function Menu() {
     const { cart } = useContext(ShopContext)
-
-    console.log(cart)
 
     return ( <>
         <BrowserRouter>
@@ -71,8 +61,7 @@ function Menu() {
                             <Button color="inherit"><Link to="/shop">Shop</Link> </Button>
                         </nav>
                         
-                        <img src={cartLogo} width={50} height={50} />
-
+                        <Link to="/cart"><img  src={cartLogo} width={50} heigh={50} /></Link> 
                         {cart && <p>{cart.length}</p>}
 
                 </Toolbar>
@@ -92,7 +81,8 @@ function Menu() {
                 <Route path="/todo" element={<Todo />} />
                 <Route path="/shop" element={<Shop />} />
                 <Route path="/product/:id" element={<Product />} />
-
+                <Route path="/cart" element={<Cart />} />
+                <Route path="*" element={<NoPage />} />
             </Routes>
         </BrowserRouter>
     </> );
