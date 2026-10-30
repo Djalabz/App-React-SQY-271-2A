@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react"
 import { ShopContext } from "./context/ShopContext"
+import { useNavigate } from "react-router-dom"
 
 import "./Shop.css"
 
@@ -18,6 +19,8 @@ import "./Shop.css"
 
 function Shop() {
     const { products, setProducts, cart, setCart, addToCart } = useContext(ShopContext)
+
+    let navigate = useNavigate()
 
     // On vient fetch les produits depuis la Fake Store API lors du render initial
     useEffect(() => {
@@ -42,12 +45,12 @@ function Shop() {
             <section className="products-grid">
 
                 {products && products.map((product) => (
-                    <div key={product.id} className="product-card">
+                    <div onClick={() => navigate("/product/" + product.id)} key={product.id} className="product-card">
                         <img src={product.image} alt={product.title} />
                         <h2>{product.title}</h2>
                         <h3>{product.price} £</h3>
                         <button onClick={() => addToCart(product)}>Ajouter au panier</button>
-                </div> )) }
+                    </div> )) }
 
             </section>
         </>
