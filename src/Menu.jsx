@@ -23,6 +23,10 @@ import cartLogo from "./assets/cart.svg"
 
 // Imports liés au contexte
 import { ShopContext, ShopContextProvider } from "./context/ShopContext.jsx"
+import { AuthProvider } from "./context/AuthContext.jsx"
+
+// Import de la route protegée 
+import { PrivateRoute } from "./auth/PrivateRoute.jsx"
 
 // Imports liés au routeur
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
@@ -36,7 +40,8 @@ function Menu() {
     const { cart } = useContext(ShopContext)
 
     return ( <>
-        <BrowserRouter>
+    <AuthProvider>
+            <BrowserRouter>
             {/* Navigation */}
             <AppBar position="static">
                 <Toolbar>
@@ -66,25 +71,31 @@ function Menu() {
 
                 </Toolbar>
                 
-
             </AppBar>
 
-            {/* Routes */}
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/random" element={<Random />} />
-                <Route path="/articles" element={<Articles />} />
-                <Route path="/counter" element={<Counter />} />
-                <Route path="/quiz" element={<Quiz />} />
-                <Route path="/form" element={<Form />} />
-                <Route path="/api" element={<Api />} />
-                <Route path="/todo" element={<Todo />} />
-                <Route path="/shop" element={<Shop />} />
-                <Route path="/product/:id" element={<Product />} />
-                <Route path="/cart" element={<Cart />} />
-                <Route path="*" element={<NoPage />} />
-            </Routes>
-        </BrowserRouter>
+            
+                {/* Routes */}
+                    <Routes>
+                        {/* Ici mes routes non-protégées */}
+                        <Route path="/form" element={<Form />} />
+                        <Route path="*" element={<NoPage />} />
+
+                        {/* Ici j'ai mes routes protégées  */}
+                        <Route element={ <PrivateRoute /> } >
+                            <Route path="/" element={<Home />} />
+                            <Route path="/random" element={<Random />} />
+                            <Route path="/articles" element={<Articles />} />
+                            <Route path="/counter" element={<Counter />} />
+                            <Route path="/quiz" element={<Quiz />} />
+                            <Route path="/api" element={<Api />} />
+                            <Route path="/todo" element={<Todo />} />
+                            <Route path="/shop" element={<Shop />} />
+                            <Route path="/product/:id" element={<Product />} />
+                            <Route path="/cart" element={<Cart />} />
+                        </Route>
+                    </Routes>
+                </BrowserRouter>
+            </ AuthProvider>
     </> );
 }
 
