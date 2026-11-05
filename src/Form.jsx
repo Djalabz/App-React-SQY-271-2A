@@ -111,6 +111,11 @@ function Form() {
         .then(token => {
             console.log(token)
 
+            // Si on a message associé c'est qu'aucun token n'a été géneré on stop donc le processus de login
+            if (token.message) {
+                return
+            }
+
             if (view === "login") {
                 // On enregistre, pour le moment, le token en LS 
                 window.localStorage.setItem("token", token)
