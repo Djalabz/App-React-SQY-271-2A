@@ -10,7 +10,15 @@ export const ShopContextProvider = ({ children }) => {
     const [products, setProducts] = useState([]) 
     const [cart, setCart] = useState(window.localStorage.getItem("cart") ? JSON.parse(window.localStorage.getItem("cart")) : [])
     const [product, setProduct] = useState("")
-    const [rating, setRating] = useState(null)
+    const [ratings, setRatings] = useState({})
+
+    // On vient modifier l'objet ratings en ajoutant l'id et la note au state ratings 
+    function setProductRating(productId, note) {
+        setRatings((prev) => ({
+            ...prev,
+            [productId]: note
+        }))
+    }
     
     function addToCart(product) {
         // On vient vérifier si le produit est déjà ou pas dans notre cart 
@@ -41,7 +49,7 @@ export const ShopContextProvider = ({ children }) => {
         products, 
         setProducts,
         cart, setCart, addToCart,
-        product, setProduct, rating, setRating
+        product, setProduct, ratings, setProductRating
     }
 
     return <ShopContext.Provider value={ShopContextValues}>{children}</ShopContext.Provider>

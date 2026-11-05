@@ -34,10 +34,11 @@ import "./Product.css"
 
 function Product() {
     let { setToken } = useAuth()
-    let { product, setProduct, rating, setRating } = useContext(ShopContext)
+    let { product, setProduct, ratings, setProductRating } = useContext(ShopContext)
     let token = localStorage.getItem("token")
     let params = useParams()
     let navigate = useNavigate()
+    let note = ratings[params.id] ?? null
 
     useEffect(() => {
         fetch('https://fakestoreapi.com/products/' + params.id)
@@ -47,18 +48,22 @@ function Product() {
             setProduct(data)
         })
         .catch(err => console.log(err))
-    }, [])
+    }, [params.id])
 
+    function handleRatingChange(event, newValue) {
+        setProductRating(params.id, newValue)
 
-    // Dès qu'un rating est ajouté ou modifié on appelle l'API et on envoit le rating vers le back
-    useEffect(() => {
+        if (newValue == null) {
+            return
+        }
+
         fetch('http://localhost:3000/product/rating', {
-                method: "POST" , 
+                method: "POST" ,
                 headers : {
                     'Content-Type' : "application/json",
                     'Authorization' : `Bearer ${token}`
                 },
-                body : JSON.stringify({ product_id : params.id, note : rating }) 
+                body : JSON.stringify({ product_id : params.id, note : newValue })
         })
         .then(data => data.json())
         .then(result => {
@@ -70,7 +75,7 @@ function Product() {
             }
         })
         .catch(err => console.log(err))
-    }, [rating])
+    }
 
     return ( 
         <>
@@ -80,10 +85,8 @@ function Product() {
                 <h3>{product.price} $</h3>
                 <Rating
                     name="product-rating"
-                    value={rating}
-                    onChange={(event, newValue) => {
-                        setRating(newValue);
-                    }}
+                    value={note}
+                    onChange={handleRatingChange}
                 />
                 <h4>{product.description}</h4>
                 <Button variant="contained">Ajouter au panier</Button>
