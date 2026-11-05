@@ -18,10 +18,6 @@ export function AuthProvider({ children }) {
     const [token, setToken] = useState(() => localStorage.getItem('token'))
     const [user, setUser] = useState(null)
 
-    // Les expressions régulières/regex nous permettent de vérifier la composition du mail et mdp
-    let passwordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{6,}$/
-    let emailRegex = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/
-
     
 
     // Rajouter un useEffect -> à chaque fois que la valeur de token (le payload) change on récupère celui-ci 

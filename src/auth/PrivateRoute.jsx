@@ -6,7 +6,7 @@ export function PrivateRoute() {
     const { isAuthenticated } = useAuth()
 
     // Si cette variable est isAuthenticated 
-    return isAuthenticated ? <Outlet /> : <Navigate to='login' />
+    return isAuthenticated ? <Outlet /> : <Navigate to='form' />
 
 
 }

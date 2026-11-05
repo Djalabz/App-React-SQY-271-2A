@@ -13,13 +13,13 @@ import Cart from "./Cart.jsx"
 import NoPage from "./NoPage.jsx"
 
 // Imports liés à MUI 
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+import AppBar from '@mui/material/AppBar'
+import Toolbar from '@mui/material/Toolbar'
+import Button from '@mui/material/Button'
+import IconButton from '@mui/material/IconButton'
+import MenuIcon from '@mui/icons-material/Menu'
 import cartLogo from "./assets/cart.svg"
+import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 
 // Imports liés au contexte
 import { ShopContext, ShopContextProvider } from "./context/ShopContext.jsx"
@@ -30,7 +30,7 @@ import { PrivateRoute } from "./auth/PrivateRoute.jsx"
 
 // Imports liés au routeur
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import { useContext, useState, useEffect } from "react"
+import { useContext } from "react"
 
 // Import pour le CSS 
 import "./Menu.css"
@@ -66,11 +66,10 @@ function Menu() {
                             <Button color="inherit"><Link to="/shop">Shop</Link> </Button>
                         </nav>
                         
-                        <Link to="/cart"><img  src={cartLogo} width={50} heigh={50} /></Link> 
+                        <Link to="/cart"><LocalGroceryStoreIcon /></Link> 
                         {cart && <p>{cart.length}</p>}
 
                 </Toolbar>
-                
             </AppBar>
 
             
@@ -80,7 +79,7 @@ function Menu() {
                         <Route path="/form" element={<Form />} />
                         <Route path="*" element={<NoPage />} />
 
-                        {/* Ici j'ai mes routes protégées  */}
+                        {/* Ici j'ai mes routes protégées encadrées par PrivateRoutes */}
                         <Route element={ <PrivateRoute /> } >
                             <Route path="/" element={<Home />} />
                             <Route path="/random" element={<Random />} />
