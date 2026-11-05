@@ -22,8 +22,9 @@ import cartLogo from "./assets/cart.svg"
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 
 // Imports liés au contexte
-import { ShopContext, ShopContextProvider } from "./context/ShopContext.jsx"
+import { ShopContext } from "./context/ShopContext.jsx"
 import { AuthProvider } from "./context/AuthContext.jsx"
+import { useAuth } from "./context/AuthContext.jsx"
 
 // Import de la route protegée 
 import { PrivateRoute } from "./auth/PrivateRoute.jsx"
@@ -38,12 +39,13 @@ import "./Menu.css"
 
 function Menu() {
     const { cart } = useContext(ShopContext)
+    const { isAuthenticated } = useAuth()
+    // sx={{ 'display' : (!isAuthenticated) ? 'none' : 'flex' , 'justifyContent' : 'spaceAround' }}
 
     return ( <>
-        <AuthProvider>
-            <BrowserRouter>
+        <BrowserRouter>
             {/* Navigation */}
-            <AppBar position="static">
+            <AppBar sx={{ 'display' : (!isAuthenticated) ? 'none' : 'flex' , 'justifyContent' : 'spaceAround' }}  className="app-bar" position="static">
                 <Toolbar>
                     <IconButton
                         size="large"
@@ -66,8 +68,10 @@ function Menu() {
                             <Button color="inherit"><Link to="/shop">Shop</Link> </Button>
                         </nav>
                         
-                        <Link to="/cart"><LocalGroceryStoreIcon /></Link> 
-                        {cart && <p>{cart.length}</p>}
+                        <div className="full-cart">
+                            <Link to="/cart"><LocalGroceryStoreIcon /></Link> 
+                            {cart && <p>{cart.length}</p>}
+                        </div>
 
                 </Toolbar>
             </AppBar>
@@ -93,8 +97,7 @@ function Menu() {
                             <Route path="/cart" element={<Cart />} />
                         </Route>
                     </Routes>
-                </BrowserRouter>
-        </ AuthProvider>
+        </BrowserRouter>
     </> );
 }
 

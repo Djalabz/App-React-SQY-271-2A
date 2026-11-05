@@ -11,7 +11,7 @@ export function AuthProvider({ children }) {
         password: "", 
         confirm: "", 
     })
-    const [view, setView] = useState("signup")
+    const [view, setView] = useState("login")
     const [inputTypes, setInputTypes] = useState(["username", "email", "password", "confirm"])
     const [error, setError] = useState("")
     // Rajouter le state qui contiendra le token (token) et un state lié au User

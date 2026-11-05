@@ -3,6 +3,7 @@ import Menu from "./Menu.jsx"
 
 // Import du ShopContext Provider 
 import { ShopContextProvider } from "./context/ShopContext.jsx"
+import { AuthProvider } from "./context/AuthContext.jsx"
 
 // On veut transmettre des données liées au shop vers le menu afin que l'icone de panier puisse afficher
 // le nombre total d'items dans le panier -> on veut que ce soit dynamique
@@ -14,7 +15,7 @@ import { ShopContextProvider } from "./context/ShopContext.jsx"
 function App() {
   return (
     <>
-      <ShopContextProvider><Menu /></ShopContextProvider>
+      <AuthProvider><ShopContextProvider><Menu /></ShopContextProvider></AuthProvider>
     </>
   )
 }
