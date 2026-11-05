@@ -1,8 +1,9 @@
 // Dans cette page on peut utiliser useParam qui permet de récup les paramètres dans l'url
 // De cette manière on recup l'id du produit et faire une requete API 
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useContext, useState } from "react"
 import { ShopContext } from "./context/ShopContext";
+import { useAuth } from "./context/AuthContext";
 
 import Button from '@mui/material/Button';
 import Rating from '@mui/material/Rating';
@@ -32,9 +33,11 @@ import "./Product.css"
 
 
 function Product() {
+    let { setToken } = useAuth()
     let { product, setProduct, rating, setRating } = useContext(ShopContext)
     let token = localStorage.getItem("token")
     let params = useParams()
+    let navigate = useNavigate()
 
     useEffect(() => {
         fetch('https://fakestoreapi.com/products/' + params.id)
@@ -58,7 +61,14 @@ function Product() {
                 body : JSON.stringify({ product_id : params.id, note : rating }) 
         })
         .then(data => data.json())
-        .then(result => console.log(result))
+        .then(result => {
+            console.log(result)
+            if (result.message == "Token est invalide") {
+                setToken(null)
+                localStorage.removeItem('token')
+                navigate("/")
+            }
+        })
         .catch(err => console.log(err))
     }, [rating])
 
