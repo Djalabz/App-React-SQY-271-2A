@@ -26,14 +26,14 @@ import "./Product.css"
 // BDD : 
 // Associer un User à une note et un produit ... Créer une table Note avec 2 clés étrangères : celle du user lié et du produit 
 
+// Il va falloir charger nos produits depuis la table products de notre base et afficher pour chacun la moyenne de ses notes 
+
+// La suite : Ajouter une table commentaires -> pourquoi pas la fusionner avec celle des notes ?
+
 
 function Product() {
-    const [rating, setRating] = useState(null)
-
-    let { product, setProduct } = useContext(ShopContext)
-
+    let { product, setProduct, rating, setRating } = useContext(ShopContext)
     let token = localStorage.getItem("token")
-
     let params = useParams()
 
     useEffect(() => {
@@ -45,6 +45,7 @@ function Product() {
         })
         .catch(err => console.log(err))
     }, [])
+
 
     // Dès qu'un rating est ajouté ou modifié on appelle l'API et on envoit le rating vers le back
     useEffect(() => {
