@@ -40,7 +40,6 @@ import "./Menu.css"
 function Menu() {
     const { cart } = useContext(ShopContext)
     const { isAuthenticated } = useAuth()
-    // sx={{ 'display' : (!isAuthenticated) ? 'none' : 'flex' , 'justifyContent' : 'spaceAround' }}
 
     return ( <>
         <BrowserRouter>

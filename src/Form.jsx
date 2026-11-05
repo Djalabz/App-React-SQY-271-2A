@@ -24,7 +24,7 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 
 function Form() {
-    const { formData, setFormData, view, setView, inputTypes, setInputTypes, error, setError } = useAuth()
+    const { formData, setFormData, view, setView, inputTypes, setInputTypes, error, setError, setToken } = useAuth()
 
     let navigate = useNavigate()
 
@@ -114,6 +114,7 @@ function Form() {
             if (view === "login") {
                 // On enregistre, pour le moment, le token en LS 
                 window.localStorage.setItem("token", token)
+                setToken(token)
                 // On redirige ensuite vers la page appropriée avec useNavigate
                 navigate('/')
 
