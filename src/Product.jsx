@@ -27,7 +27,10 @@ import "./Product.css"
 // BDD : 
 // Associer un User à une note et un produit ... Créer une table Note avec 2 clés étrangères : celle du user lié et du produit 
 
+// A FAIRE ENSUITE 
+
 // Il va falloir charger nos produits depuis la table products de notre base et afficher pour chacun la moyenne de ses notes 
+// Cela implique donc de changer la requete http depuis React et coder la route qui permet de renvoyer les produits et leurs infos de la BDD vers le front 
 
 // La suite : Ajouter une table commentaires -> pourquoi pas la fusionner avec celle des notes ?
 
@@ -40,6 +43,7 @@ function Product() {
     let navigate = useNavigate()
     let note = ratings[params.id] ?? null
 
+    // Il va falloir adapter ce useEffect
     useEffect(() => {
         fetch('https://fakestoreapi.com/products/' + params.id)
         .then(response => response.json())
@@ -50,6 +54,8 @@ function Product() {
         .catch(err => console.log(err))
     }, [params.id])
 
+    // Le composant Rating de MUI permet de récupérer la note ici avec newValue en 2eme argument. 
+    // Une value de Null équivaut à zéro ou pas d'étoiles 
     function handleRatingChange(event, newValue) {
         setProductRating(params.id, newValue)
 
@@ -65,14 +71,18 @@ function Product() {
                 },
                 body : JSON.stringify({ product_id : params.id, note : newValue })
         })
-        .then(data => data.json())
-        .then(result => {
-            console.log(result)
-            if (result.message == "Token est invalide") {
+        .then(res => {
+            // Ici le res.ok permet de vérifier si on recup une erreur (400,401,500) depuis l'API
+            // res.status permet aussi de recup directement le status de l'erreur 
+            if (!res.ok) {
                 setToken(null)
                 localStorage.removeItem('token')
                 navigate("/")
             }
+            return res.json()
+        })
+        .then(data => {
+            console.log(data)
         })
         .catch(err => console.log(err))
     }

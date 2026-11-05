@@ -1,6 +1,12 @@
 import { useState, useEffect, useContext, createContext } from "react"
 
 
+// TODO : 
+// Vérifier la validité du token -> expiration 
+// Vérifier aussi le contenu avec le back lors du démarrage ? on pourrait appeller une route /api/me (ou /api/validate). 
+// Si le backend répond 401, on déconnecte immédiatement.
+
+
 const AuthContext = createContext()
 
 export function AuthProvider({ children }) {
@@ -17,8 +23,6 @@ export function AuthProvider({ children }) {
     // Rajouter le state qui contiendra le token (token) et un state lié au User
     const [token, setToken] = useState(() => localStorage.getItem('token'))
     const [user, setUser] = useState(null)
-
-    
 
     // Rajouter un useEffect -> à chaque fois que la valeur de token (le payload) change on récupère celui-ci 
     // on le convertir depuis JSON et on crée un state avec le USer qui contient les infos liées au User dans le token 
@@ -44,7 +48,12 @@ export function AuthProvider({ children }) {
     const isAuthenticated = !!token
     // const isAuthenticated = Boolean(token)
 
-
+    // Fonction de logout réutilisable
+    function logout() {
+        setToken(null)
+        localStorage.removeItem('token')
+        redirect("/")
+    }
 
     let AuthContextValues = {
         formData, setFormData,
@@ -54,6 +63,7 @@ export function AuthProvider({ children }) {
         token, setToken, 
         user, setUser, 
         isAuthenticated,
+        logout
     }
 
     return <AuthContext.Provider value={AuthContextValues}>{children}</AuthContext.Provider>
