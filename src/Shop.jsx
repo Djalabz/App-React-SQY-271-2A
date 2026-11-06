@@ -4,21 +4,14 @@ import { useNavigate } from "react-router-dom"
 
 import "./Shop.css"
 
-// TODO //
+// TODO :
 
-// 1 - Faire page individuelle pour les produits (product.jsx) -> quand on clique sur un item on arrive sur la page dédiée
-// On peut rediriger le user lorsqu'il cliquez sur un produit avec useNavigate
-
-// 2 - Il va falloir coder la route dans le Menu -> product/:id -> on pourra utiliser cette route
-
-// 3 - Sur la page du produit on pourra utilise useParams qui permet de récupérer l'id de l'URL et donc de faire un call API 
-// afin d'afficher les infos du produit souhaité. 
-
-// 4 - L'idée est d'exploiter au maximum le contexte précedemment crée
+// On voudrait idéalement regrouper tous les produits ainsi que leur notes dans un state products 
+// On pourrait ainsi grace au contexte partager ce state à tous les endroits ou en a besoin -> page produit, cart, shop etc...
 
 
 function Shop() {
-    const { products, setProducts, cart, setCart, addToCart } = useContext(ShopContext)
+    const { products, setProducts, cart, addToCart } = useContext(ShopContext)
 
     let navigate = useNavigate()
 
@@ -45,7 +38,7 @@ function Shop() {
             <section className="products-grid">
 
                 {products && products.map((product) => (
-                    <div onClick={() => navigate("/product/" + product.id)} key={product.id} className="product-card">
+                    <div onClick={() => navigate("/product/" + product.id_product)} key={product.id_product} className="product-card">
                         <img src={product.image} alt={product.title} />
                         <h2>{product.title}</h2>
                         <h3>{product.price} £</h3>

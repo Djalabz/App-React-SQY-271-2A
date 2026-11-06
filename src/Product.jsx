@@ -10,32 +10,18 @@ import Rating from '@mui/material/Rating';
 
 import "./Product.css"
 
-
-// A FAIRE ENSUITE 
-
-// 1 - Il va falloir charger nos produits depuis la table products de notre base et afficher pour chacun la moyenne de ses notes 
-// Cela implique donc de changer la requete http depuis React et coder la route qui permet de renvoyer les produits et leurs infos de la BDD vers le front 
-
-// 2 - La suite : Ajouter une table commentaires -> pourquoi pas la fusionner avec celle des notes ?
-
-
 function Product() {
     let { logout } = useAuth()
-    let { product, setProduct, ratings, setProductRating } = useContext(ShopContext)
+    let { products, product, setProduct, ratings, setProductRating } = useContext(ShopContext)
     let token = localStorage.getItem("token")
     let params = useParams()
-    let note = ratings[params.id] ?? null
 
-    // Il va falloir adapter ce useEffect afin de recup les produits depuis la BDD
+    // On vient chercher dans le state des produits (products) celui qui possède bien l'id recup dans les params de l'URL
     useEffect(() => {
-        fetch('https://localhost:3000/product/' + params.id)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
-            setProduct(data)
+        products.forEach((item) => {
+            (item.id_product == params.id) && setProduct(item)
         })
-        .catch(err => console.log(err))
-    }, [params.id])
+    }, []) 
 
     // Le composant Rating de MUI permet de récupérer la note ici avec newValue en 2eme argument. 
     // Une value de Null équivaut à zéro ou pas d'étoiles 
@@ -76,8 +62,9 @@ function Product() {
                 <h3>{product.price} $</h3>
                 <Rating
                     name="product-rating"
-                    value={note}
+                    value={product.moyenne_note}
                     onChange={handleRatingChange}
+                    precision={0.5}
                 />
                 <h4>{product.description}</h4>
                 <Button variant="contained">Ajouter au panier</Button>
