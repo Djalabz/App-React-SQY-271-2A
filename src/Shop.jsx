@@ -24,7 +24,7 @@ function Shop() {
 
     // On vient fetch les produits depuis la Fake Store API lors du render initial
     useEffect(() => {
-        fetch('https://fakestoreapi.com/products')
+        fetch('http://localhost:3000/product/all')
         .then(response => response.json())
         .then(data => {
             console.log(data)

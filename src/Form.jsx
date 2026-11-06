@@ -28,11 +28,9 @@ function Form() {
 
     let navigate = useNavigate()
 
-    
     // Les expressions régulières/regex nous permettent de vérifier la composition du mail et mdp
     let passwordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{6,}$/
     let emailRegex = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/
-
 
     // Ici le useEffect vient changer les types d'input lors de chaque changement de vue 
     // le state view représente la vue en cours (login ou signup) et se trouve ici dans le tableau de dépendances

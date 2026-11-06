@@ -23,7 +23,6 @@ import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 
 // Imports liés au contexte
 import { ShopContext } from "./context/ShopContext.jsx"
-import { AuthProvider } from "./context/AuthContext.jsx"
 import { useAuth } from "./context/AuthContext.jsx"
 
 // Import de la route protegée 
@@ -39,7 +38,9 @@ import "./Menu.css"
 
 function Menu() {
     const { cart } = useContext(ShopContext)
-    const { isAuthenticated } = useAuth()
+    const { user, isAuthenticated } = useAuth()
+
+    console.log(user)
 
     return ( <>
         <BrowserRouter>

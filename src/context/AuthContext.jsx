@@ -1,11 +1,11 @@
 import { useState, useEffect, useContext, createContext } from "react"
 
-
 // TODO : 
-// Vérifier la validité du token -> expiration 
-// Vérifier aussi le contenu avec le back lors du démarrage ? on pourrait appeller une route /api/me (ou /api/validate). 
-// Si le backend répond 401, on déconnecte immédiatement.
 
+// 1 - Vérifier aussi le contenu avec le back lors du démarrage ? on pourrait appeller une route /api/me (ou /api/validate). 
+// 2 - Si le backend répond 401, on déconnecte immédiatement.
+
+// Vérifier la validité du token -> expiration 
 
 const AuthContext = createContext()
 
@@ -27,10 +27,13 @@ export function AuthProvider({ children }) {
     // Rajouter un useEffect -> à chaque fois que la valeur de token (le payload) change on récupère celui-ci 
     // on le convertir depuis JSON et on crée un state avec le USer qui contient les infos liées au User dans le token 
     // Si on ne parvient pas à recup les infos, ou une erreur, on logout 
+
+    // TODO : Décrypter le token avec JWT Decode, une dépendance à ajouter avec npm afin d'ajouter les infos de base de user au state
     useEffect(() => {
         if (token) {
             try {
-                const payload = JSON.parse(token.split('.')[1])
+                const payload = token.split('.')
+                console.log(payload)
                 setUser(payload)
             } catch(err) {
                 // Il faudrait idéalement logout la personne

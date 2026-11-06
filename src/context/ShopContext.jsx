@@ -3,6 +3,9 @@ import { useState, createContext } from "react"
 // On commence par créer le contexte sans ajouter de valeur initiale
 export const ShopContext = createContext()
 
+// TODO : 
+// Améliorer la structure du système de ratings -> On veut recup les produits depuis la base et aussi leur notes associées 
+// Egalement la suppression du cart à gérer
 
 // Le fournisseur / Provider dyuy contexte (doit prendre en sandwich le composant cible)
 export const ShopContextProvider = ({ children }) => {
@@ -40,9 +43,7 @@ export const ShopContextProvider = ({ children }) => {
 
     // // On vient vérifier la qty, -1 ou on supprime le produit selon
     // function deleteFromCart() {
-
     //     // Imlpémenter cette fonctionnalité 
-
     // }
 
     const ShopContextValues = {
