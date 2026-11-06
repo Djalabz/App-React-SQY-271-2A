@@ -6,8 +6,7 @@ import "./Shop.css"
 
 // TODO :
 
-// On voudrait idéalement regrouper tous les produits ainsi que leur notes dans un state products 
-// On pourrait ainsi grace au contexte partager ce state à tous les endroits ou en a besoin -> page produit, cart, shop etc...
+// ON veut manitenant afficher la note également sur la page de Shop
 
 
 function Shop() {

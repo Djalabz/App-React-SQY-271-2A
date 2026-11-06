@@ -10,6 +10,19 @@ import Rating from '@mui/material/Rating';
 
 import "./Product.css"
 
+
+// TODO : 
+
+// Ajouter une section de commentaires 
+
+// En React -> Utiliser MUI poour faire un formulaire de commentaires et une zone d'affichage de ces commentaires; 
+// Si pas de commentaires un message suffit (Aucun commentaire pour le moment).
+
+// En Node -> Créer le route permettant de publier un commentaire 
+
+// En BDD -> Soit créer une table commentaire à part entière soit joindre la table commentaire et rating 
+
+
 function Product() {
     let { logout } = useAuth()
     let { products, product, setProduct, ratings, setProductRating } = useContext(ShopContext)
