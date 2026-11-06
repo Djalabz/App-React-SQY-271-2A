@@ -9,3 +9,9 @@
     width: 300px;
     height: auto;
 }
+
+.product-comment-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+}

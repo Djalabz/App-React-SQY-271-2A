@@ -40,8 +40,6 @@ function Menu() {
     const { cart } = useContext(ShopContext)
     const { user, isAuthenticated } = useAuth()
 
-    console.log(user)
-
     return ( <>
         <BrowserRouter>
             {/* Navigation */}

@@ -2,11 +2,16 @@
 // De cette manière on recup l'id du produit et faire une requete API 
 import { useParams } from "react-router-dom";
 import { useEffect, useContext, useState } from "react"
+
 import { ShopContext } from "./context/ShopContext";
 import { useAuth } from "./context/AuthContext";
 
+import DOMPurify from 'dompurify';
+
+import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Rating from '@mui/material/Rating';
+
 
 import "./Product.css"
 
@@ -24,6 +29,9 @@ import "./Product.css"
 
 
 function Product() {
+
+    const [comment, setComment] = useState("")
+
     let { logout } = useAuth()
     let { products, product, setProduct, ratings, setProductRating } = useContext(ShopContext)
     let token = localStorage.getItem("token")
@@ -67,6 +75,25 @@ function Product() {
         .catch(err => console.log(err))
     }
 
+    function addComment() {
+        // Enregistrer le commentaire en BDD et aussi ajouter ce commentaire à unstate ...
+        if (comment != "") {
+            let clean = DOMPurify.sanitize(comment.trim())
+
+            fetch("http://localhost:3000/product/comment/new", {
+                method: "POST",
+                body: JSON.stringify({ product_id : params.id, comment }),
+                headers: {
+                    "Content-Type" : "application/json",
+                    "Authorization" : `Bearer ${token}`
+                }
+            })
+            .then(results => results.json())
+            .then(data => console.log(data))
+            .catch(err => console.log(err))
+        }
+    }
+
     return ( 
         <>
             <div className="productCard">
@@ -81,6 +108,27 @@ function Product() {
                 />
                 <h4>{product.description}</h4>
                 <Button variant="contained">Ajouter au panier</Button>
+            </div>
+
+            <div className="product-comment-form">
+                <h2>Laissez un commentaire</h2>
+
+                <TextField
+                    id="product-comment-input"
+                    placeholder="Laissez votre commentaire ici..."
+                    // label="Multiline"
+                    multiline
+                    rows={4}
+                    defaultValue="Default Value"
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                />
+
+                <Button onClick={() => addComment()}>Soumettre le commentaire</Button>
+            </div>
+
+            <div className="comment-section">
+
             </div>
         </>
     );
