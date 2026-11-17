@@ -109,7 +109,7 @@ function Product() {
         }
     }
 
-    console.log(!comments.length)
+    console.log(comments)
 
     return ( 
         <>
@@ -145,27 +145,14 @@ function Product() {
             </div>
 
             <div className="comment-section">
-
                 {!comments.length ? <h3>Aucun commentaires pour le moment...</h3>
-                : comments.map((comment) => {
+                : comments.map((comment) => 
                     <>
                         <h4>{comment.username}</h4>
                         <h5>{comment.date}</h5>
                         <p>{comment.comment}</p>
                     </>
-                })}
-
-                {/* 
-                    FRONT - Créer un composant commentaire -> Lors de chaque chargement d'une page produit les commentaires doivent 
-                    s'afficher depuis la BDD. On viendra Maper les différents commentaires en utilisant le composant
-
-                    Si pas de commentaires -> On affiche un message type "Aucun commentaire pour le moment" 
-
-                    BACK -> Coder la route qui fait que dès que vous arrivez sur une page de produit vous récupérez 
-                    les comments associés
-                    + Ajouter timestamp pour chaque commentaire -> modifier la table en question  
-                */}
-
+                )}
             </div>
         </>
     );
