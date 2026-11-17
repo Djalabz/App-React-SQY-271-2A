@@ -15,7 +15,6 @@ import Rating from '@mui/material/Rating';
 
 import "./Product.css"
 
-
 // TODO : 
 
 // Ajouter une section de commentaires - 
@@ -30,6 +29,7 @@ import "./Product.css"
 
 function Product() {
     const [comment, setComment] = useState("")
+    const [comments, setComments] = useState([])
 
     let { logout } = useAuth()
     let { products, product, setProduct, ratings, setProductRating } = useContext(ShopContext)
@@ -42,6 +42,22 @@ function Product() {
             (item.id_product == params.id) && setProduct(item)
         })
     }, []) 
+
+    useEffect(() => {
+        fetch(`http://localhost:3000/product/${params.id}/comments`, {
+            headers: {
+                "Content-Type" : "application/json",
+                "Authorization" : `Bearer ${token}`
+            }
+        })
+        .then(results => results.json())
+        .then(data => {
+            console.log(data)
+            setComments(data)
+        })
+        .catch(err => console.log(err))
+    }, [])
+
 
     // Le composant Rating de MUI permet de récupérer la note ici avec newValue en 2eme argument. 
     // Une value de Null équivaut à zéro ou pas d'étoiles 
@@ -93,6 +109,8 @@ function Product() {
         }
     }
 
+    console.log(!comments.length)
+
     return ( 
         <>
             <div className="productCard">
@@ -127,14 +145,26 @@ function Product() {
             </div>
 
             <div className="comment-section">
-{/* 
-                FRONT - Créer un composant commentaire -> Lors de chaque chargement d'une page produit les commentaires doivent 
-                s'afficher depuis la BDD. On viendra Maper les différents commentaires en utilisant le composant
 
-                Si pas de commentaires -> On affiche un message type "Aucun commentaire pour le moment" 
+                {!comments.length ? <h3>Aucun commentaires pour le moment...</h3>
+                : comments.map((comment) => {
+                    <>
+                        <h4>{comment.username}</h4>
+                        <h5>{comment.date}</h5>
+                        <p>{comment.comment}</p>
+                    </>
+                })}
 
-                BACK -> Coder la route qui fait que dès que vous arrivez sur une page de produit vous récupérez 
-                les comments associés */}
+                {/* 
+                    FRONT - Créer un composant commentaire -> Lors de chaque chargement d'une page produit les commentaires doivent 
+                    s'afficher depuis la BDD. On viendra Maper les différents commentaires en utilisant le composant
+
+                    Si pas de commentaires -> On affiche un message type "Aucun commentaire pour le moment" 
+
+                    BACK -> Coder la route qui fait que dès que vous arrivez sur une page de produit vous récupérez 
+                    les comments associés
+                    + Ajouter timestamp pour chaque commentaire -> modifier la table en question  
+                */}
 
             </div>
         </>
