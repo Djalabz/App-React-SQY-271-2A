@@ -1,5 +1,6 @@
 // Dans cette page on peut utiliser useParam qui permet de récup les paramètres dans l'url
 // De cette manière on recup l'id du produit et faire une requete API 
+
 import { useParams } from "react-router-dom";
 import { useEffect, useContext, useState } from "react"
 
@@ -12,13 +13,12 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Rating from '@mui/material/Rating';
 
-
 import "./Product.css"
 
 
 // TODO : 
 
-// Ajouter une section de commentaires 
+// Ajouter une section de commentaires - 
 
 // En React -> Utiliser MUI poour faire un formulaire de commentaires et une zone d'affichage de ces commentaires; 
 // Si pas de commentaires un message suffit (Aucun commentaire pour le moment).
@@ -29,7 +29,6 @@ import "./Product.css"
 
 
 function Product() {
-
     const [comment, setComment] = useState("")
 
     let { logout } = useAuth()
@@ -128,6 +127,14 @@ function Product() {
             </div>
 
             <div className="comment-section">
+{/* 
+                FRONT - Créer un composant commentaire -> Lors de chaque chargement d'une page produit les commentaires doivent 
+                s'afficher depuis la BDD. On viendra Maper les différents commentaires en utilisant le composant
+
+                Si pas de commentaires -> On affiche un message type "Aucun commentaire pour le moment" 
+
+                BACK -> Coder la route qui fait que dès que vous arrivez sur une page de produit vous récupérez 
+                les comments associés */}
 
             </div>
         </>

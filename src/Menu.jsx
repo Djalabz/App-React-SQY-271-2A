@@ -36,9 +36,19 @@ import { useContext } from "react"
 import "./Menu.css"
 
 
+// A faire : 
+
+// 1 - Page de profil 
+// 2 - Page de paramètres 
+// 3 - Faire la page pour le Chat (MUI ou autre) + icone sur la navbar 
+// 4 - ...
+
+//
+
+
 function Menu() {
     const { cart } = useContext(ShopContext)
-    const { user, isAuthenticated } = useAuth()
+    const { isAuthenticated } = useAuth()
 
     return ( <>
         <BrowserRouter>
