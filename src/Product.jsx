@@ -104,12 +104,18 @@ function Product() {
                 }
             })
             .then(results => results.json())
-            .then(data => console.log(data))
+            .then(data => {
+
+                console.log(data)
+                let { user } = data
+
+                setComments([ ... comments, { username : user.username, comment: comment, date : Date.now() } ])
+                setComment("")
+
+            })
             .catch(err => console.log(err))
         }
     }
-
-    console.log(comments)
 
     return ( 
         <>
