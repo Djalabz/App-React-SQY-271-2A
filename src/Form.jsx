@@ -10,19 +10,6 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 
-// Connecter le Front avec le back -> On veut que signup et login soient fonctionnels
-
-// Démarrez votre app express et lancez phpmyadmin (et react bien sur)
-
-// Créer une fonction dans le react qui aura pour role de fetch/post les données après signup et après le login 
-
-// On peut annuler les règles sur le mot de passe pour le moment 
-
-// Il faudra bien vérifier que le nouveau user est crée en BDD / Un message de confirmation doit aussi etre renvoyé quand on se login 
-
-// Pour le moment on renvoit juste un statut 200 avec un message vers le front quand c'est fonctionnel.
-
-
 function Form() {
     const { formData, setFormData, view, setView, inputTypes, setInputTypes, error, setError, setToken } = useAuth()
 

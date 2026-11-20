@@ -12,6 +12,7 @@ import Product from "./Product.jsx"
 import Cart from "./Cart.jsx"
 import NoPage from "./NoPage.jsx"
 import Chat from "./Chat.jsx"
+import Profile from "./Profile.jsx"
 
 // Imports liés à MUI 
 import AppBar from '@mui/material/AppBar'
@@ -67,14 +68,15 @@ function Menu() {
                     </IconButton>
                         <nav>
                             <Button color="inherit"><Link to="/">Home</Link> </Button>
-                            <Button color="inherit"><Link to="/quiz">Quiz</Link></Button>
+                            {/* <Button color="inherit"><Link to="/quiz">Quiz</Link></Button> */}
                             <Button color="inherit"><Link to="/random">Random</Link> </Button>
-                            <Button color="inherit"><Link to="/articles">Articles</Link> </Button>
-                            <Button color="inherit"><Link to="/counter">Counter</Link> </Button>
-                            <Button color="inherit"><Link to="/api">Api</Link> </Button>
+                            {/* <Button color="inherit"><Link to="/articles">Articles</Link> </Button>
+                            <Button color="inherit"><Link to="/counter">Counter</Link> </Button> */}
+                            {/* <Button color="inherit"><Link to="/api">Api</Link> </Button> */}
                             <Button color="inherit"><Link to="/form">Form</Link> </Button>
                             <Button color="inherit"><Link to="/todo">Todo</Link> </Button>
                             <Button color="inherit"><Link to="/shop">Shop</Link> </Button>
+                            <Button color="inherit"><Link to="/profile">Profile</Link> </Button>
                         </nav>
                         
                         <div className="full-cart">
@@ -109,6 +111,7 @@ function Menu() {
                             <Route path="/product/:id" element={<Product />} />
                             <Route path="/cart" element={<Cart />} />
                             <Route path="/chat" element={<Chat />} />
+                            <Route path="/profile" element={<Profile />} />
                         </Route>
                     </Routes>
         </BrowserRouter>
