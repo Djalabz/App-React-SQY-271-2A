@@ -57,7 +57,7 @@ function Menu() {
     return ( <>
         <BrowserRouter>
             {/* Navigation */}
-            <AppBar sx={{ 'display' : (!isAuthenticated) ? 'none' : 'flex' , 'justifyContent' : 'spaceAround' }}  className="app-bar" position="static">
+            <AppBar sx={{ 'display' : (!isAuthenticated) ? 'none' : 'flex' , 'justifyContent' : 'center' }}  className="app-bar" position="static">
                 <Toolbar>
 
                     

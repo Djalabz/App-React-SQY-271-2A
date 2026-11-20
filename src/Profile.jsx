@@ -38,8 +38,6 @@ function Profile() {
     // Fonction qui vient confirmer le changement et les envoyer vers l'API puis BDD
     function handleSubmitProfile() {
 
-        console.log("on est dans la fonction")
-
         console.log(Object.entries(user))
 
         let isChanged = false;
@@ -81,6 +79,14 @@ function Profile() {
         // Vous pourrez organiser le tout avec un try et catch pour gérer les erreurs.
     } 
 
+    function handleChangeAvatar(e) {
+        console.log(e.target.files[0])
+
+        setInputValue({ ... inputValue, avatar : e.target.files[0] })
+    }
+
+    console.log(inputValue)
+
     return ( 
         <>
             <h1>Page de profile</h1>
@@ -93,7 +99,7 @@ function Profile() {
                 >
                    <div>
                         <Avatar sx={{ width: "5rem", height : "5rem", margin: "auto" }} alt="" src="/src/uploads/avatar-cameron.webp" />
-                        {/* < EditOutlinedIcon onClick={() => handleChangeInfos()} /> */}
+                        <input type="file" accept="image/*" onChange={(e) => handleChangeAvatar(e)} />
                     </div>
 
                    <div className="profile-row">
