@@ -32,8 +32,6 @@ function Profile() {
         avatar : ""
     })
 
-    console.log(user)
-
     // Fonction qui permet de passer en mode edit pour modifier les infos
     function handleChangeInfos(field) {
         if (edit === field) {
@@ -46,7 +44,48 @@ function Profile() {
 
     // Fonction qui vient confirmer le changement et les envoyer vers l'API puis BDD
     function handleSubmitProfile() {
-        
+
+        console.log("on est dans la fonction")
+
+        console.log(Object.entries(user))
+
+        let isChanged = false;
+
+        // S'assurer qu'il y a bien eu des changements au niveau des informations données
+        Object.entries(user).forEach(([key, value]) => {
+            if (inputValue[key] != value) {
+                isChanged = true
+            }
+        })
+
+        if (isChanged) {
+            // On peu fetcher pour envoyer les modifs au back
+            try {
+                fetch("http://localhost:3000/user/profile", {
+                    method: "PUT", 
+                    headers :{
+                        "Content-type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    body : JSON.stringify(inputValue)
+                })
+                .then(data => data.json())
+                .then(result => {
+                    console.log(result)
+                    // setUser(inputValue)
+                }) 
+            } catch(err) {
+                console.log(err)
+            }
+        }
+
+        // Ensuite on vient faire une req HTTP qui va nous permettre de modifier des inofs existantes 
+        // On enverra donc ces infos dans le body sans oublier le token qui viendra valider cette action
+
+        // Lorsque c'est validé et que l'on a un retour de l'API on peut afficher un message de confirmation 
+        // "Les modifications ont été effectuèes avec succès"
+
+        // Vous pourrez organiser le tout avec un try et catch pour gérer les erreurs.
     } 
 
     return ( 
@@ -59,7 +98,6 @@ function Profile() {
                     noValidate
                     autoComplete="off"
                 >
-
                    <div>
                         <Avatar alt="" src="">RJ</Avatar >
                         {/* < EditOutlinedIcon onClick={() => handleChangeInfos()} /> */}
