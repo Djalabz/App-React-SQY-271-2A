@@ -1,16 +1,7 @@
 // Ici page de profil ! 
 
-// Il nous faudra une photo de profil de type Avatar
-// Il faudra afficher le usename, l'adresse mail renseignée 
-// Pourquoi pas une catchphrase ou une description  
-
-// On doit pouvoir pour chaque information qui est affichée la modifier -> Req de type PUT
-
-// Il faudra aussi s'occuper de l'API -> Coder la ou les routes correspondantes 
-// Il faudra aussi s'assurer que tout concorde avec la BDD (rajouter lm'avatar, la catch phrase etc)
-
-// Pour ce qui est des avatars on peut les enregistrer dans le projet directement (on stockerait juste le chemin vers l'image en BDD)
-// Pour aller un peu plus loin on pourra regarder comment uploader un avatar.
+// faire apparaitre l'avatar sur la page de profil mais aussi dans la Navbar 
+// Réfléchir à la manière dont ion peut uploader un nouvel avatar 
 
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -21,6 +12,8 @@ import Button from '@mui/material/Button';
 import { useState, useEffect, useContext } from "react"
 
 import { useAuth } from "./context/AuthContext"
+
+import "./Profile.css"
 
 function Profile() {
     let { user, setUser, token, setToken } = useAuth()
@@ -99,10 +92,11 @@ function Profile() {
                     autoComplete="off"
                 >
                    <div>
-                        <Avatar alt="" src="">RJ</Avatar >
+                        <Avatar sx={{ width: "5rem", height : "5rem", margin: "auto" }} alt="" src="/src/uploads/avatar-cameron.webp" />
                         {/* < EditOutlinedIcon onClick={() => handleChangeInfos()} /> */}
                     </div>
-                   <div>
+
+                   <div className="profile-row">
                         <h2>Username : </h2>
                         { (edit == "username") ? 
                             <TextField
@@ -115,22 +109,26 @@ function Profile() {
                             <h2>{inputValue.username}</h2>
                         }
                         
-                        < EditOutlinedIcon onClick={() => handleChangeInfos("username")} /></div>
-                   <div>
-                        <h2>email : </h2>
-                            { (edit == "email") ? 
-                                <TextField
-                                name="email"
-                                variant="outlined"
-                                placeholder={user.email}
-                                value={inputValue.email}
-                                onChange={(e) => setInputValue({ ... inputValue, email: e.target.value })} />
-                                : 
-                                <h2>{inputValue.email}</h2>
-                            }
-                            
-                            < EditOutlinedIcon onClick={() => handleChangeInfos("email")} /></div>
-                   <div>
+                        < EditOutlinedIcon onClick={() => handleChangeInfos("username")} />
+                    </div>
+
+                        
+                   <div className="profile-row">
+                    <h2>email : </h2>
+                        { (edit == "email") ? 
+                            <TextField
+                            name="email"
+                            variant="outlined"
+                            placeholder={user.email}
+                            value={inputValue.email}
+                            onChange={(e) => setInputValue({ ... inputValue, email: e.target.value })} />
+                            : 
+                            <h2>{inputValue.email}</h2>
+                        }
+                        < EditOutlinedIcon onClick={() => handleChangeInfos("email")} />
+                    </div>
+
+                   <div className="profile-row">
                         <h2>description : </h2>
                             { (edit == "description") ? 
                                 <TextField

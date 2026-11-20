@@ -23,6 +23,7 @@ import MenuIcon from '@mui/icons-material/Menu'
 import cartLogo from "./assets/cart.svg"
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
+import Avatar from '@mui/material/Avatar';
 
 // Imports liés au contexte
 import { ShopContext } from "./context/ShopContext.jsx"
@@ -58,6 +59,12 @@ function Menu() {
             {/* Navigation */}
             <AppBar sx={{ 'display' : (!isAuthenticated) ? 'none' : 'flex' , 'justifyContent' : 'spaceAround' }}  className="app-bar" position="static">
                 <Toolbar>
+
+                    
+                    <div>
+                        <Link to="/profile"><Avatar sx={{ width: "2.5rem", height : "2.5rem", margin: "auto" }} alt="" src="/src/uploads/avatar-cameron.webp" /></Link>
+                    </div>
+
                     <IconButton
                         size="large"
                         edge="start"
@@ -68,25 +75,22 @@ function Menu() {
                     </IconButton>
                         <nav>
                             <Button color="inherit"><Link to="/">Home</Link> </Button>
-                            {/* <Button color="inherit"><Link to="/quiz">Quiz</Link></Button> */}
                             <Button color="inherit"><Link to="/random">Random</Link> </Button>
-                            {/* <Button color="inherit"><Link to="/articles">Articles</Link> </Button>
-                            <Button color="inherit"><Link to="/counter">Counter</Link> </Button> */}
-                            {/* <Button color="inherit"><Link to="/api">Api</Link> </Button> */}
                             <Button color="inherit"><Link to="/form">Form</Link> </Button>
                             <Button color="inherit"><Link to="/todo">Todo</Link> </Button>
                             <Button color="inherit"><Link to="/shop">Shop</Link> </Button>
-                            <Button color="inherit"><Link to="/profile">Profile</Link> </Button>
+                            
                         </nav>
                         
                         <div className="full-cart">
                             <Link to="/cart"><LocalGroceryStoreIcon /></Link> 
-                            {cart && <p>{cart.length}</p>}
+                            {/* {cart && <p>{cart.length}</p>} */}
                         </div>
 
                         <div className="chat-icon">
                             <Link to="/chat"><ChatOutlinedIcon /></Link> 
                         </div>
+
 
                 </Toolbar>
             </AppBar>
