@@ -11,6 +11,7 @@ import Shop from "./Shop.jsx"
 import Product from "./Product.jsx"
 import Cart from "./Cart.jsx"
 import NoPage from "./NoPage.jsx"
+import Chat from "./Chat.jsx"
 
 // Imports liés à MUI 
 import AppBar from '@mui/material/AppBar'
@@ -20,6 +21,7 @@ import IconButton from '@mui/material/IconButton'
 import MenuIcon from '@mui/icons-material/Menu'
 import cartLogo from "./assets/cart.svg"
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
+import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
 
 // Imports liés au contexte
 import { ShopContext } from "./context/ShopContext.jsx"
@@ -62,7 +64,6 @@ function Menu() {
                         aria-label="menu"
                         sx={{ mr: 2 }}
                     >
-                    <MenuIcon />
                     </IconButton>
                         <nav>
                             <Button color="inherit"><Link to="/">Home</Link> </Button>
@@ -79,6 +80,10 @@ function Menu() {
                         <div className="full-cart">
                             <Link to="/cart"><LocalGroceryStoreIcon /></Link> 
                             {cart && <p>{cart.length}</p>}
+                        </div>
+
+                        <div className="chat-icon">
+                            <Link to="/chat"><ChatOutlinedIcon /></Link> 
                         </div>
 
                 </Toolbar>
@@ -103,6 +108,7 @@ function Menu() {
                             <Route path="/shop" element={<Shop />} />
                             <Route path="/product/:id" element={<Product />} />
                             <Route path="/cart" element={<Cart />} />
+                            <Route path="/chat" element={<Chat />} />
                         </Route>
                     </Routes>
         </BrowserRouter>

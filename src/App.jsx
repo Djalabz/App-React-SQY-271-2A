@@ -5,12 +5,16 @@ import Menu from "./Menu.jsx"
 import { ShopContextProvider } from "./context/ShopContext.jsx"
 import { AuthProvider } from "./context/AuthContext.jsx"
 
-// On veut transmettre des données liées au shop vers le menu afin que l'icone de panier puisse afficher
-// le nombre total d'items dans le panier -> on veut que ce soit dynamique
+// TODO GLOBALE : 
 
-// Au bon endroit récupérer le contexte provider et prendre en sandwich le composant qui doit recevoir les données
+// 1 - Recup les infos du user en traduisant le token JWT dans le authContext 
+// Ceci afin d'avoir accès au nom, email du user en cours partout dans l'application 
 
-// Puis dans la navbar afficher le nombres d'items avec un numéro.
+// 2 - Faire une nouvelle page qui viendra accueillir un chat / messagerie instantanée
+// On pourra avoir une icone de type bulle BD dans la navbar 
+
+// 3 - Améliorer l'affichage des commentaires sur la page produit qui n'est pas très ésthétique
+// Mettre les dates de commentaires au meme format  
 
 function App() {
   return (
