@@ -34,6 +34,7 @@ function Profile() {
 
     console.log(user)
 
+    // Fonction qui permet de passer en mode edit pour modifier les infos
     function handleChangeInfos(field) {
         if (edit === field) {
             setEdit(null)
@@ -42,6 +43,11 @@ function Profile() {
             setEdit(field)
         }
     }
+
+    // Fonction qui vient confirmer le changement et les envoyer vers l'API puis BDD
+    function handleSubmitProfile() {
+        
+    } 
 
     return ( 
         <>
@@ -87,10 +93,21 @@ function Profile() {
                             
                             < EditOutlinedIcon onClick={() => handleChangeInfos("email")} /></div>
                    <div>
-                        <h3>Description : ...</h3>
-                        < EditOutlinedIcon onClick={() => handleChangeInfos()} /></div>
+                        <h2>description : </h2>
+                            { (edit == "description") ? 
+                                <TextField
+                                name="description"
+                                variant="outlined"
+                                placeholder={user.description}
+                                value={inputValue.description}
+                                onChange={(e) => setInputValue({ ... inputValue, description: e.target.value })} />
+                                : 
+                                <h2>{inputValue.description}</h2>
+                            }
+                            
+                        < EditOutlinedIcon onClick={() => handleChangeInfos("description")} /></div>
 
-                    <Button>Enretgistrer les modifications</Button>
+                    <Button onClick={() => handleSubmitProfile()}>Enregistrer les modifications</Button>
             </Box>
 
         </>
